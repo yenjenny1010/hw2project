@@ -1,4 +1,5 @@
 from tkinter import * # Import tkinter
+import numpy as np
 
 class RaceCar(Canvas):
     def __init__(self, master, width, height):
@@ -18,12 +19,13 @@ class RaceCar(Canvas):
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30, 
             self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill = "red", tags = "car")
 
+speed = np.random.uniform(low=1, high=5)
 def run():
     while True:
         for car in cars:
             if car.x < int(car["width"]):
                 car.displayCar()
-                car.x += 2
+                car.x += speed
             else:
                 car.x = 0
             
@@ -41,6 +43,7 @@ for i in range(4):
     cars.append(RaceCar(window, width = width, height = height))
     cars[i].pack()
 run()
+
 
         
 window.mainloop() # Create an event loop
