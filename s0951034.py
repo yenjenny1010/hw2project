@@ -17,9 +17,6 @@ class RaceCar:
     def displaycar():
         pg.draw.rect(bg, (255, 255, 255), [0, 75, 50, 30])
 
-    def setx(self, x):
-        self.x = x
-
     def sety(self, y):
         self.y = y
 
@@ -36,7 +33,7 @@ class RaceCar:
         return self.displacement
 car1 = RaceCar
 car2 = RaceCar
-#car2.
+car2.sety(75)
 car3 = RaceCar
 car4 = RaceCar
 
@@ -63,6 +60,7 @@ bg.fill((255, 255, 255))  # 畫布的顏色
 # 顯示
 paintrunway()
 car1.displaycar()
+car2.displaycar()
 screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗
 pg.display.update()  # 要更新繪圖視窗內容，才能顯示繪製的圖形，語法為
 
