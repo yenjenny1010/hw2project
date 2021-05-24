@@ -12,7 +12,6 @@ class RaceCar(Canvas):
         
     def displayCar(self):
         self.delete("car") 
-    
         self.create_oval(self.x + 10, self.y - 10, self.x + 20,  self.y, fill = "black", tags = "car")
         self.create_oval(self.x + 30, self.y - 10, self.x + 40,  self.y, fill = "black", tags = "car")
         self.create_rectangle(self.x, self.y - 20, self.x + 50,  self.y - 10, fill = "green", tags = "car")
