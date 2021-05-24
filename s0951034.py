@@ -15,7 +15,7 @@ class RaceCar:
         self.displacement = displacement
 
     def displaycar():
-        pg.draw.rect(bg, (255, 255, 255), [0, 75, 50, 30])
+        pg.draw.rect(bg, (255, 255, 255), [self.x, 75, 50, 30])
 
     def sety(self, y):
         self.y = y
