@@ -8,13 +8,13 @@ pg.init()
 
 
 class RaceCar:
-    def __init__(self, x=0, y=0, displacement=0):  # set initial value
+    def __init__(self, x=0, y=75, displacement=0):  # set initial value
         self.sleepTime = 100
         self.x = x
         self.y = y
         self.displacement = displacement
 
-    def displaycar(self,j):
+    def displaycar(self, j):
 
         pg.draw.rect(bg, (255, j, 255), [0, self.y, 50, 30])
 
@@ -34,11 +34,15 @@ class RaceCar:
         return self.displacement
 
 
+# 設定car1234為物件
 car1 = RaceCar()
+car1.sety(75)
 car2 = RaceCar()
 car2.sety(135)
-car3 = RaceCar
-car4 = RaceCar
+car3 = RaceCar()
+car3.sety(195)
+car4 = RaceCar()
+car4.sety(255)
 
 
 def paintrunway():
@@ -50,6 +54,9 @@ def paintrunway():
     # pygame.draw.line(畫布, 顏色, (x坐標1, y坐標1), (x坐標2, y坐標2), 線寬)
     pg.draw.rect(bg, (255, 160, 122), [0, 240, 800, 60])
     pg.draw.line(bg, (0, 0, 0), [720, 60], [720, 300], 2)
+
+def run():
+    a=1
 
 
 # 設定視窗
@@ -64,6 +71,8 @@ bg.fill((255, 255, 255))  # 畫布的顏色
 paintrunway()
 car1.displaycar(255)
 car2.displaycar(0)
+car3.displaycar(0)
+car4.displaycar(0)
 screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗
 pg.display.update()  # 要更新繪圖視窗內容，才能顯示繪製的圖形，語法為
 

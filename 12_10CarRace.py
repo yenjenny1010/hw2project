@@ -9,20 +9,18 @@ class RaceCar(Canvas):
         self.x = 10
         self.y = 50
         self.displayCar()
-        # self.run()
-        
+    
     def displayCar(self):
         self.delete("car") 
         self.create_oval(self.x + 10, self.y - 10, self.x + 20,  self.y, fill = "black", tags = "car")
         self.create_oval(self.x + 30, self.y - 10, self.x + 40,  self.y, fill = "black", tags = "car")
         self.create_rectangle(self.x, self.y - 20, self.x + 50,  self.y - 10, fill = "green", tags = "car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30, 
-            self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill = "red", tags = "car")
-
-speed = np.random.uniform(low=1, high=5)
-def run():
+                            self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill = "red", tags = "car")
+    
+def run(speed):
     while True:
-        for car in cars:
+        for car in cars:   #？
             if car.x < int(car["width"]):
                 car.displayCar()
                 car.x += speed
@@ -42,7 +40,12 @@ cars = []
 for i in range(4):
     cars.append(RaceCar(window, width = width, height = height))
     cars[i].pack()
-run()
+
+speed = np.random.uniform(low=1, high=5)
+print(i)
+cars[i] = run(speed)
+    
+    
 
 
         
