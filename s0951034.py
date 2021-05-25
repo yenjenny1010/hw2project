@@ -14,9 +14,9 @@ class RaceCar:
         self.y = y
         self.displacement = displacement
 
-    def displaycar(self, j):
+    def displaycar(self):
 
-        pg.draw.rect(bg, (255, j, 255), [0, self.y, 50, 30])
+        pg.draw.rect(bg, (255, 0, 255), [self.x, self.y, 50, 30])
 
     def sety(self, y):
         self.y = y
@@ -33,8 +33,25 @@ class RaceCar:
     def getdisplacement(self):
         return self.displacement
 
+    def run(self):
+        while True:
+            if self.x < 670:
+                self.displaycar()
+                speed = random.randrange(20)
+                self.x += speed
+                print(self.x)
+                screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗
+                pg.display.update()
+            else:
+                self.x = 0
+                screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗
+                pg.display.update()
+                break
+           
+            
 
-# 設定car1234為物件
+
+# 設定car1234為物件及設定self.y值
 car1 = RaceCar()
 car1.sety(75)
 car2 = RaceCar()
@@ -55,9 +72,6 @@ def paintrunway():
     pg.draw.rect(bg, (255, 160, 122), [0, 240, 800, 60])
     pg.draw.line(bg, (0, 0, 0), [720, 60], [720, 300], 2)
 
-def run():
-    a=1
-
 
 # 設定視窗
 width, height = 800, 300  # 跑道800*60
@@ -66,20 +80,25 @@ screen = pg.display.set_mode((width, height))
 # 建立畫布bg
 pg.display.set_caption('Car Race')
 bg = pg.Surface(screen.get_size())  # 跟screen一樣大
+bg = bg.convert()
 bg.fill((255, 255, 255))  # 畫布的顏色
 # 顯示
 paintrunway()
-car1.displaycar(255)
-car2.displaycar(0)
-car3.displaycar(0)
-car4.displaycar(0)
-screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗
-pg.display.update()  # 要更新繪圖視窗內容，才能顯示繪製的圖形，語法為
+# car1.displaycar(255)
 
+clock = pg.time.Clock()
 running = True
 while running:
+    
+    #clock.tick(30)  # 每秒執行30次
     for event in pg.event.get():
-        if event.type == pg.QUIT:
+        if event.type == pg.QUIT:          
             running = False
+        car1.run()
+        screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗#重繪視窗
+        pg.display.update()  # 要更新繪圖視窗內容，才能顯示繪製的圖形，語法為
 
 pg.quit()
+
+#問題一沒有重繪視窗
+#重繪視窗是重繪指哪裡

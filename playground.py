@@ -1,41 +1,29 @@
-'''import os
-os.system('calc')
-'''
-""class Test:
-    def ppr(self):
-        print(self)
-        print(self.__class__)
-
-t = Test()
-t.ppr()""
-import pygame as pg
-pg.init()
-
-#設定視窗
-width, height = 640, 480                      
-screen = pg.display.set_mode((width, height))   
-pg.display.set_caption("Sean's game")         
-#建立畫布bg
-bg = pg.Surface(screen.get_size())
-bg = bg.convert()
-bg.fill((255,255,255))
-
-#繪製幾何圖形
-pg.draw.rect(bg, (0,0,255),[70, 70, 500, 60], 4)
-pg.draw.rect(bg, (0,0,255),[70, 150, 500, 60], 0)            #線寬0為實心
-pg.draw.circle(bg, (0,0,255),(100,300), 50, 4)
-pg.draw.ellipse(bg, (0,0,255),[200,250, 150, 80], 4)
-pg.draw.arc(bg, (0,0,255),[400, 250, 70, 150] ,5 ,1.5 , 4)
-pg.draw.line(bg, (0,0,255),(550,250), (550, 400), 4)
-#要在這兩條程式碼上面喔!!
-screen.blit(bg, (0,0))
-pg.display.update()
-
-
-#關閉程式的程式碼
+import pygame
+pygame.init()
+screen = pygame.display.set_mode((640, 70))
+pygame.display.set_caption("水平移動")
+background = pygame.Surface(screen.get_size())
+background = background.convert()
+background.fill((255,255,255))
+ball = pygame.Surface((30,30)) #建立球矩形繪圖區
+ball.fill((255,255,255)) #矩形區塊背景為白色
+pygame.draw.circle(ball, (0,0,255), (15,15), 15, 0) #畫藍色球
+rect1 = ball.get_rect() #取得球矩形區塊
+rect1.center = (320,45) #球起始位置
+x, y = rect1.topleft #球左上角坐標
+dx = 3 #球運動速度
+clock = pygame.time.Clock()
 running = True
 while running:
-    for event in pg.event.get():
-        if event.type == pg.QUIT:
+    clock.tick(30) #每秒執行30次
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
             running = False
-pg.quit()   
+        screen.blit(background, (0,0)) #清除繪圖視窗
+        x += dx #改變水平位置
+        rect1.center = (x,y)
+    if(rect1.left <= 0 or rect1.right >= screen.get_width()): #到達左右邊界
+        dx *= -1
+    screen.blit(ball, rect1.topleft)
+    pygame.display.update()
+pygame.quit()

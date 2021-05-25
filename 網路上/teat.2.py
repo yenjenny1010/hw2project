@@ -35,7 +35,7 @@ class Car(pygame.sprite.Sprite):
 
     def repaint(self, color):
         self.color = color
-        pyame.draw.rect(self.image, self.color, [
+        pygame.draw.rect(self.image, self.color, [
                         0, 0, self.width, self.height])
 
 
