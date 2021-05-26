@@ -23,6 +23,7 @@ class RaceCar(Canvas):
                               self.y - 10, fill="green", tags="car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30,
                             self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill="red", tags="car")
+        self.create_rectangle(0, 0, 800,  30, fill="green", tags="runway")
 
     def setname(self, name):
         self.name = name
@@ -67,18 +68,25 @@ for i in range(4):
     cars.append(RaceCar(window, width=width, height=height))
     runway1 = runway(window, width=width, height=height)
 
-    # runway1.displayrunway()
+    
     cars[i].pack()
 
-    # runway1.pack()
+    runway1.pack()
 
 # set car's name
 name = ["1", "2", "3", "4"]
 for i in range(4):
     cars[i].setname(name[i])
-    print(cars[i].name)
+    
 
-color=[]
+"""color=['snow', 'ghost white', 'white smoke', 'gainsboro','papaya whip', 'blanched almond', 'bisque', 'peach puff',
+    'navajo white', 'lemon chiffon', 'mint cream', 'azure', 'alice blue', 'lavender',
+    'lavender blush', 'misty rose', 'dark slate gray', 'midnight blue']
+print(color[17]) 
+for i in range()"""   
+"""for i in range(4):
+    cars[i].setname(color[])"""
+
 run()
 window.mainloop()  # Create an event loop
 
