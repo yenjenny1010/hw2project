@@ -1,5 +1,5 @@
 from tkinter import * # Import tkinter
-import numpy as np
+import random
 
 class RaceCar(Canvas):
     def __init__(self, master, width, height):
@@ -8,7 +8,7 @@ class RaceCar(Canvas):
         self.sleepTime = 100
         self.x = 10
         self.y = 50
-        self.displayCar()
+        #self.displayCar()
     
     def displayCar(self):
         self.delete("car") 
@@ -17,12 +17,16 @@ class RaceCar(Canvas):
         self.create_rectangle(self.x, self.y - 20, self.x + 50,  self.y - 10, fill = "green", tags = "car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30, 
                             self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill = "red", tags = "car")
-    
-def run(speed):
+
+#class runway:
+
+
+def run():
     while True:
         for car in cars:   #？
             if car.x < int(car["width"]):
                 car.displayCar()
+                speed = random.randrange(20)
                 car.x += speed
             else:
                 car.x = 0
@@ -33,17 +37,16 @@ def run(speed):
 window = Tk() # Create a window
 window.title("Racing Cars") # Set a title
 
-width = 250
-height = 48
+width = 800
+height = 60
 
 cars = []
 for i in range(4):
     cars.append(RaceCar(window, width = width, height = height))
     cars[i].pack()
+print(cars)
+run()
 
-speed = np.random.uniform(low=1, high=5)
-print(i)
-cars[i] = run(speed)
     
     
 

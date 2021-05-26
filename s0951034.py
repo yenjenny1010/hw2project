@@ -35,18 +35,23 @@ class RaceCar:
 
     def run(self):
         while True:
-            if self.x < 670:
+            if self.x < 680:
                 self.displaycar()
+                pg.time.delay(50)
                 speed = random.randrange(20)
                 self.x += speed
                 print(self.x)
                 screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗
                 pg.display.update()
+                break
             else:
                 self.x = 0
                 screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗
                 pg.display.update()
                 break
+def win():
+    if car1.x==670 or car2.x==670 or car3.x==670 or car4.x==670:
+        
            
             
 
@@ -84,17 +89,24 @@ bg = bg.convert()
 bg.fill((255, 255, 255))  # 畫布的顏色
 # 顯示
 paintrunway()
-# car1.displaycar(255)
+car1.displaycar()
+car2.displaycar()
+car3.displaycar()
+car4.displaycar()
 
 clock = pg.time.Clock()
 running = True
 while running:
     
-    #clock.tick(30)  # 每秒執行30次
+    clock.tick(30)  # 每秒執行30次
     for event in pg.event.get():
         if event.type == pg.QUIT:          
             running = False
         car1.run()
+        car2.run()
+        car3.run()
+        car4.run()
+
         screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗#重繪視窗
         pg.display.update()  # 要更新繪圖視窗內容，才能顯示繪製的圖形，語法為
 
