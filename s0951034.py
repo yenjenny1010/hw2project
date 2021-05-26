@@ -49,9 +49,9 @@ class RaceCar:
                 screen.blit(bg, (0, 0))  # (背景變數, 繪製位置)  #繪製覆蓋整個視窗
                 pg.display.update()
                 break
-def win():
-    if car1.x==670 or car2.x==670 or car3.x==670 or car4.x==670:
-        
+"""def win():
+    if car1.x==670 or car2.x==670 or car3.x==670 or car4.x==670:"""
+
            
             
 
