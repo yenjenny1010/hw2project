@@ -1,8 +1,8 @@
 from tkinter import *  # Import tkinter
 import random
 name = ["1", "2", "3", "4"]
-color = ["#FFC0CB","#800080" ,"#0000FF", "#008000" ,"#F5F5DC", "#FFFF00" ,"#FFD700", "#FFA500" ,"#FFFFFF","#FF0000","#808080","#000000"]
-
+carcolor = ["#FFC0CB","#800080" ,"#0000FF", "#008000" ,"#F5F5DC", "#FFFF00" ,"#FFD700", "#FFA500" ,"#FF0000","#808080","#000000"]
+runwaycolor=['floral white', 'old lace',"lemon chiffon", 'antique white','peach puff']
 
 
 
@@ -22,6 +22,7 @@ class RaceCar(Canvas):
 
     def displayCar(self):
         self.delete("car")
+        self.create_rectangle(0, 0, 800,  60, fill="lemon chiffon", tags="car")
         self.create_oval(self.x + 10, self.y - 10, self.x +
                          20,  self.y, fill=self.color, tags="car")
         self.create_oval(self.x + 30, self.y - 10, self.x +
@@ -30,8 +31,6 @@ class RaceCar(Canvas):
                               self.y - 10, fill=self.color2, tags="car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30,
                             self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill=self.color3, tags="car")
-        #self.create_rectangle(0, 0, 800,  30, fill="green", tags="runway")
-
     def setname(self, name):
         self.name = name
 
@@ -80,13 +79,13 @@ for i in range(4):
     runways.append(runway(window, width=width, height=height))
     cars.append(RaceCar(window, width=width, height=height))
     cars[i].setname(name[i])
-    cars[i].setcolor(color[random.randrange(11)])
-    cars[i].setcolor1(color[random.randrange(11)])
-    cars[i].setcolor2(color[random.randrange(11)])
-    cars[i].setcolor3(color[random.randrange(11)])
+    cars[i].setcolor(carcolor[random.randrange(10)])
+    cars[i].setcolor1(carcolor[random.randrange(10)])
+    cars[i].setcolor2(carcolor[random.randrange(10)])
+    cars[i].setcolor3(carcolor[random.randrange(10)])
     cars[i].pack()
 
-#runway1.pack()
+
 
     
 print(cars[i].color)
