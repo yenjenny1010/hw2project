@@ -1,5 +1,9 @@
 from tkinter import *  # Import tkinter
 import random
+name = ["1", "2", "3", "4"]
+color = ["#FFC0CB","#800080" ,"#0000FF", "#008000" ,"#F5F5DC", "#FFFF00" ,"#FFD700", "#FFA500" ,"#FFFFFF","#FF0000","#808080","#000000"]
+
+
 
 
 class RaceCar(Canvas):
@@ -11,6 +15,9 @@ class RaceCar(Canvas):
         self.y = 50  # initial value
         self.name = 1
         self.color = "white"
+        self.color1 = "white"
+        self.color2 = "white"
+        self.color3 = "white"
         # self.displayCar()
 
     def displayCar(self):
@@ -18,18 +25,24 @@ class RaceCar(Canvas):
         self.create_oval(self.x + 10, self.y - 10, self.x +
                          20,  self.y, fill=self.color, tags="car")
         self.create_oval(self.x + 30, self.y - 10, self.x +
-                         40,  self.y, fill="black", tags="car")
+                         40,  self.y, fill=self.color1, tags="car")
         self.create_rectangle(self.x, self.y - 20, self.x + 50,
-                              self.y - 10, fill="green", tags="car")
+                              self.y - 10, fill=self.color2, tags="car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30,
-                            self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill="red", tags="car")
-        self.create_rectangle(0, 0, 800,  30, fill="green", tags="runway")
+                            self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill=self.color3, tags="car")
+        #self.create_rectangle(0, 0, 800,  30, fill="green", tags="runway")
 
     def setname(self, name):
         self.name = name
 
     def setcolor(self, color):
         self.color = color
+    def setcolor1(self, color):
+        self.color1 = color
+    def setcolor2(self, color):
+        self.color2 = color
+    def setcolor3(self, color):
+        self.color3 = color
 
 
 def run():
@@ -37,7 +50,7 @@ def run():
         for car in cars:  # ？
             if car.x < int(car["width"]):
                 car.displayCar()
-                runway1.displayrunway()
+                #runway1.displayrunway()
                 speed = random.randrange(20)
                 car.x += speed
             else:
@@ -66,26 +79,19 @@ runways = []
 for i in range(4):
     runways.append(runway(window, width=width, height=height))
     cars.append(RaceCar(window, width=width, height=height))
-    runway1 = runway(window, width=width, height=height)
-
-    
+    cars[i].setname(name[i])
+    cars[i].setcolor(color[random.randrange(11)])
+    cars[i].setcolor1(color[random.randrange(11)])
+    cars[i].setcolor2(color[random.randrange(11)])
+    cars[i].setcolor3(color[random.randrange(11)])
     cars[i].pack()
 
-    runway1.pack()
+#runway1.pack()
 
-# set car's name
-name = ["1", "2", "3", "4"]
-for i in range(4):
-    cars[i].setname(name[i])
     
+print(cars[i].color)
+# set car's name
 
-"""color=['snow', 'ghost white', 'white smoke', 'gainsboro','papaya whip', 'blanched almond', 'bisque', 'peach puff',
-    'navajo white', 'lemon chiffon', 'mint cream', 'azure', 'alice blue', 'lavender',
-    'lavender blush', 'misty rose', 'dark slate gray', 'midnight blue']
-print(color[17]) 
-for i in range()"""   
-"""for i in range(4):
-    cars[i].setname(color[])"""
 
 run()
 window.mainloop()  # Create an event loop
