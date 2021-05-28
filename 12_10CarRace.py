@@ -74,10 +74,10 @@ class RaceCar(Canvas):
         self.color4 = color
 
 
-running=1
 
+running=True  
 def run():
-    running=1
+    global running
     while running:
         
         for car in cars:  # ？
@@ -91,12 +91,14 @@ def run():
                 car.displayCar()
                 speed = random.randrange(35)
                 car.x += speed
+               
             else:
                 car.win()
                 running=False
             car.after(50)
             car.update()  # Sleep for 100 milliseconds
         car.update()
+        
       
             
             
@@ -133,16 +135,20 @@ for i in range(4):
 
 
 def resetAll():
-    running=True
+    
     for car in cars:
         car.x = 10  # initial value
         car.y = 50
-    run()
+    
 def stop():
+    global running
     running=False
     
 def keepgoing():
+    global running
     running=True
+    run()
+
 DoThing = tk.Button(window, text='RESTART',command=resetAll)
 mybutton2 = tk.Button(window, text='stop', command=stop)
 mybutton3 = tk.Button(window, text='keep going', command=keepgoing)
