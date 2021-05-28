@@ -1,6 +1,7 @@
 from tkinter import *
 import tkinter as tk
 import random
+import pygame
 name = ["1", "2", "3", "4"]
 carcolor = ["#FFC0CB", "#800080", "#0000FF", "#008000", "#F5F5DC",
     "#FFFF00", "#FFD700", "#FFA500", "#FF0000", "#808080", "#000000"]
@@ -72,11 +73,15 @@ class RaceCar(Canvas):
 
     def setcolor4(self, color):
         self.color4 = color
-
-
+pygame.init()
+pygame.mixer.init()
+soundwav=pygame.mixer.Sound("C:/Users/user/OneDrive/桌面/1.mp3") #filename.wav檔名
+def play():
+    soundwav.play()
 
 running=True  
 def run():
+    play()
     global running
     while running:
         
@@ -95,6 +100,7 @@ def run():
             else:
                 car.win()
                 running=False
+                #stopmusic()
             car.after(50)
             car.update()  # Sleep for 100 milliseconds
         car.update()
@@ -135,10 +141,12 @@ for i in range(4):
 
 
 def resetAll():
-    
+    global running
+    running=True
     for car in cars:
         car.x = 10  # initial value
         car.y = 50
+    run()
     
 def stop():
     global running
