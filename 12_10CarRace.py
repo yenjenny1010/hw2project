@@ -73,32 +73,33 @@ class RaceCar(Canvas):
     def setcolor4(self, color):
         self.color4 = color
 
-running = True
 
+running=1
 
 def run():
+    running=1
     while running:
         
         for car in cars:  # ？
-            if car.x < 67:
+            if car.x < 680:
 
-                #btn = Button(root,text="PRESS ME",command=lambda:press())
-                #mybutton = tk.Button(root, text='button')
-                # mybutton.pack()
                 car.setcolor(carcolor[random.randrange(10)])
                 car.setcolor1(carcolor[random.randrange(10)])
                 car.setcolor2(carcolor[random.randrange(10)])
                 car.setcolor3(carcolor[random.randrange(10)])
                 car.setcolor4(carcolor[random.randrange(10)])
                 car.displayCar()
-                speed = random.randrange(20)
+                speed = random.randrange(35)
                 car.x += speed
             else:
                 car.win()
                 running=False
+            car.after(50)
+            car.update()  # Sleep for 100 milliseconds
+        car.update()
+      
             
-            car.after(50)  # Sleep for 100 milliseconds
-            car.update()
+            
 
             # if car.x
 
@@ -130,10 +131,26 @@ for i in range(4):
     cars[i].setcolor4(carcolor[random.randrange(10)])
     cars[i].pack()
 
-#DoThing = Button(canvas, text='Do Something',command=do_something_).pack(pady=10)
-running1 = True
-while running1:
-    #DoThing = Button(window, text='Do Something',command=do_something_).pack(pady=10)
-    run()
 
-window.mainloop()  # Create an event loop
+def resetAll():
+    running=True
+    for car in cars:
+        car.x = 10  # initial value
+        car.y = 50
+    run()
+def stop():
+    running=False
+    
+def keepgoing():
+    running=True
+DoThing = tk.Button(window, text='RESTART',command=resetAll)
+mybutton2 = tk.Button(window, text='stop', command=stop)
+mybutton3 = tk.Button(window, text='keep going', command=keepgoing)
+mybutton2.pack(side=LEFT,padx=10, pady=10)
+DoThing.pack(side=LEFT,padx=10, pady=10)   
+mybutton3.pack(side=LEFT,padx=10, pady=10)
+
+run()   
+
+  # Create an event loop
+window.mainloop()

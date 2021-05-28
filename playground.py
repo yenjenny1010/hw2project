@@ -149,7 +149,7 @@ def runway():
 #runway()
 """coord = 10, 50, 240, 210
 arc = canvas.create_arc(coord, start=0, extent=150, fill="blue")"""
-class Ball: 
+"""class Ball: 
     def __init__(self, canvas): 
      self.canvas = canvas 
      self.id = canvas.create_oval(10, 10, 25, 25, fill='red') 
@@ -157,4 +157,21 @@ class Ball:
      self.x = 0 
      self.y = -1 
      self.canvas_height = self.canvas.winfo_height 
-     self.canvas_width = self.canvas.winfo_width 
+     self.canvas_width = self.canvas.winfo_width """
+import tkinter as tk
+root = tk.Tk()
+root.title('my window')
+root.geometry('300x200')
+
+def button_event1():
+    mybutton1.config(width='20', height='2')
+
+def button_event2():
+    mybutton2.config(width='20', height='3')
+
+mybutton1 = tk.Button(root, text='button 1', command=button_event1)
+mybutton2 = tk.Button(root, text='button 2', command=button_event2)
+mybutton1.pack()
+mybutton2.pack()
+
+root.mainloop()
