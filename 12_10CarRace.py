@@ -1,9 +1,11 @@
-from tkinter import *  # Import tkinter
+from tkinter import *
+import tkinter as tk
 import random
 name = ["1", "2", "3", "4"]
-carcolor = ["#FFC0CB","#800080" ,"#0000FF", "#008000" ,"#F5F5DC", "#FFFF00" ,"#FFD700", "#FFA500" ,"#FF0000","#808080","#000000"]
-runwaycolor=['floral white', 'old lace',"lemon chiffon", 'antique white','peach puff']
-
+carcolor = ["#FFC0CB", "#800080", "#0000FF", "#008000", "#F5F5DC",
+    "#FFFF00", "#FFD700", "#FFA500", "#FF0000", "#808080", "#000000"]
+runwaycolor = ['floral white', 'old lace',
+    "lemon chiffon", 'antique white', 'peach puff']
 
 
 class RaceCar(Canvas):
@@ -18,11 +20,14 @@ class RaceCar(Canvas):
         self.color1 = "white"
         self.color2 = "white"
         self.color3 = "white"
+        self.color4 = "white"
         # self.displayCar()
 
     def displayCar(self):
         self.delete("car")
-        self.create_rectangle(0, 0, 800,  60, fill="lemon chiffon", tags="car")
+
+        self.create_rectangle(0, 0, 800,  60, fill=self.color4, tags="car")
+        self.create_line(720, 0, 720, 60)
         self.create_oval(self.x + 10, self.y - 10, self.x +
                          20,  self.y, fill=self.color, tags="car")
         self.create_oval(self.x + 30, self.y - 10, self.x +
@@ -31,32 +36,71 @@ class RaceCar(Canvas):
                               self.y - 10, fill=self.color2, tags="car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30,
                             self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill=self.color3, tags="car")
+
+        """if self.x>=20:
+
+            label = tk.Label(window,               # 文字標示所在視窗
+                 text = 'Hello, world', tags="car")
+            label.pack()     """
+
+    def win(self):
+        window1 = tk.Tk()
+        window1.title('racecar')
+        window1.geometry("300x100+250+150")
+        label = tk.Label(window1,                 # 文字標示所在視窗
+                         text=self.name )  # 顯示文字
+        label1 = tk.Label(window1,                 # 文字標示所在視窗
+                         text="win" )
+        label.pack()
+        label1.pack()
+
+
     def setname(self, name):
         self.name = name
 
     def setcolor(self, color):
         self.color = color
+
     def setcolor1(self, color):
         self.color1 = color
+
     def setcolor2(self, color):
         self.color2 = color
+
     def setcolor3(self, color):
         self.color3 = color
 
+    def setcolor4(self, color):
+        self.color4 = color
+
+running = True
+
 
 def run():
-    while True:
+    while running:
+        
         for car in cars:  # ？
-            if car.x < int(car["width"]):
+            if car.x < 67:
+
+                #btn = Button(root,text="PRESS ME",command=lambda:press())
+                #mybutton = tk.Button(root, text='button')
+                # mybutton.pack()
+                car.setcolor(carcolor[random.randrange(10)])
+                car.setcolor1(carcolor[random.randrange(10)])
+                car.setcolor2(carcolor[random.randrange(10)])
+                car.setcolor3(carcolor[random.randrange(10)])
+                car.setcolor4(carcolor[random.randrange(10)])
                 car.displayCar()
-                #runway1.displayrunway()
                 speed = random.randrange(20)
                 car.x += speed
             else:
-                car.x = 0
-
+                car.win()
+                running=False
+            
             car.after(50)  # Sleep for 100 milliseconds
             car.update()
+
+            # if car.x
 
 
 class runway(Canvas):
@@ -83,16 +127,13 @@ for i in range(4):
     cars[i].setcolor1(carcolor[random.randrange(10)])
     cars[i].setcolor2(carcolor[random.randrange(10)])
     cars[i].setcolor3(carcolor[random.randrange(10)])
+    cars[i].setcolor4(carcolor[random.randrange(10)])
     cars[i].pack()
 
+#DoThing = Button(canvas, text='Do Something',command=do_something_).pack(pady=10)
+running1 = True
+while running1:
+    #DoThing = Button(window, text='Do Something',command=do_something_).pack(pady=10)
+    run()
 
-
-    
-print(cars[i].color)
-# set car's name
-
-
-run()
 window.mainloop()  # Create an event loop
-
-# 2怎麼重疊
