@@ -76,9 +76,15 @@ class RaceCar(Canvas):
 pygame.init()
 pygame.mixer.init()
 soundwav=pygame.mixer.Sound("C:/Users/user/OneDrive/桌面/1.mp3") #filename.wav檔名
+soundwav2=pygame.mixer.Sound("C:/Users/user/OneDrive/桌面/2.mp3")
 def play():
     soundwav.play()
-
+def play2():
+    soundwav2.play()
+def stopmusic():
+    soundwav.stop()
+def keepplaymusic():
+    soundwav.unpause()
 running=True  
 def run():
     play()
@@ -86,7 +92,7 @@ def run():
     while running:
         
         for car in cars:  # ？
-            if car.x < 680:
+            if car.x < 690:
 
                 car.setcolor(carcolor[random.randrange(10)])
                 car.setcolor1(carcolor[random.randrange(10)])
@@ -100,7 +106,8 @@ def run():
             else:
                 car.win()
                 running=False
-                #stopmusic()
+                play2()
+                
             car.after(50)
             car.update()  # Sleep for 100 milliseconds
         car.update()
@@ -141,6 +148,7 @@ for i in range(4):
 
 
 def resetAll():
+    stopmusic()
     global running
     running=True
     for car in cars:
@@ -149,12 +157,14 @@ def resetAll():
     run()
     
 def stop():
+    stopmusic()
     global running
     running=False
     
 def keepgoing():
     global running
     running=True
+    #keepplaymusic()
     run()
 
 DoThing = tk.Button(window, text='RESTART',command=resetAll)

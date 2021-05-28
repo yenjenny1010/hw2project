@@ -1,1 +1,2 @@
-def 
+def stopmusic():
+    soundwav.stop()
