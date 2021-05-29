@@ -39,10 +39,9 @@ class RaceCar(Canvas):
         self.create_rectangle(self.x, self.y - 20, self.x + 50,
                               self.y - 10, fill=self.color2, tags="car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30,
-                            self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill=self.color3, tags="car")
+                            self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill=self.color3, tags="car",outline="black")
         self.create_text((self.x-10, self.y), text=self.name)
-        
-        
+
     def win(self):
         window1 = tk.Tk()
         window1.title('racecar')
@@ -50,7 +49,7 @@ class RaceCar(Canvas):
         # 文字標示所在視窗# 顯示文字
         label = tk.Label(window1, text=self.name)
         label1 = tk.Label(window1, text="win")
-        
+
         label.pack()
         label1.pack()
 
@@ -90,13 +89,13 @@ def keepplaymusic():
 
 
 def run():
-    for car in cars:  # ？
+    for car in cars:  
         car.displayCar()
     global running
     while running:
-        
-        for car in cars:  # ？
-            #car=cars[random.randrange(4)]
+
+        for car in cars:  
+            # car=cars[random.randrange(4)]
             if car.x < 670:
                 car.setcolor(carcolor[random.randrange(10)])
                 car.setcolor1(carcolor[random.randrange(10)])
@@ -108,36 +107,39 @@ def run():
                 car.x += speed
 
             else:
-                
+                cars[0].color=carcolor[0]
+                cars[9].color=carcolor[1]
+                cars[4].color=carcolor[2]
+                cars[5].color=carcolor[3]
                 stopmusic()
                 car.displayCar()
-                
-                
                 car.win()
                 running = False
                 play2()
                 break
 
-            car.after(50)# Sleep for 10 milliseconds
-            car.update()  
+            car.after(50)  # Sleep for 10 milliseconds
+            car.update()
+
+
 def start():
     stopmusic()
     global running
-    if cars[0].x >= 670 or cars[1].x >= 670 or cars[2].x >= 670 or cars[3].x >= 670 :
-        running==False
+    if cars[0].x >= 670 or cars[1].x >= 670 or cars[2].x >= 670 or cars[3].x >= 670:
+        running == False
     else:
 
-        running=True
-    
+        running = True
+
         play()
         run()
-    
+
 
 def resetAll():
     stopmusic()
-    
+
     global running
-    running=False
+    running = False
     for car in cars:
         car.x = 10  # initial value
         car.y = 50
@@ -149,36 +151,37 @@ def stop():
     global running
     running = False
 
+
 def addbutton():
     mybutton1 = tk.Button(window, text='Start', command=start)
     DoThing = tk.Button(window, text='RESTART', command=resetAll)
     mybutton2 = tk.Button(window, text='stop', command=stop)
-    
     mybutton1.pack(side=LEFT, padx=10, pady=10)
     DoThing.pack(side=LEFT, padx=10, pady=10)
     mybutton2.pack(side=LEFT, padx=10, pady=10)
-    
 
 
 window = Tk()  # Create a window
 window.title("Racing Cars")  # Set a title
 pygame.init()
 pygame.mixer.init()
-soundwav = pygame.mixer.Sound("D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/1.mp3")  # filename.wav檔名
-soundwav2 = pygame.mixer.Sound("D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/2.mp3")
+soundwav = pygame.mixer.Sound(
+    "D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/1.mp3")  # filename.wav檔名
+soundwav2 = pygame.mixer.Sound(
+    "D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/2.mp3")
 
 
 for i in range(4):
     cars.append(RaceCar(window, width=width, height=height))
     cars[i].setname(name[i])
-    #cars[i].setcolor(carcolor[random.randrange(10)])
-    #cars[i].setcolor1(carcolor[random.randrange(10)])
-    #cars[i].setcolor2(carcolor[random.randrange(10)])
-    #cars[i].setcolor3(carcolor[random.randrange(10)])
-    #cars[i].setcolor4(carcolor[random.randrange(10)])
+    # cars[i].setcolor(carcolor[random.randrange(10)])
+    # cars[i].setcolor1(carcolor[random.randrange(10)])
+    # cars[i].setcolor2(carcolor[random.randrange(10)])
+    # cars[i].setcolor3(carcolor[random.randrange(10)])
+    # cars[i].setcolor4(carcolor[random.randrange(10)])
     cars[i].pack()
-    
-    
+
+
 addbutton()
 run()
 
