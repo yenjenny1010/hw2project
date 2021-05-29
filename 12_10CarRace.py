@@ -40,7 +40,9 @@ class RaceCar(Canvas):
                               self.y - 10, fill=self.color2, tags="car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30,
                             self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill=self.color3, tags="car")
-
+        self.create_text((self.x-10, self.y), text=self.name)
+        
+        
     def win(self):
         window1 = tk.Tk()
         window1.title('racecar')
@@ -48,6 +50,7 @@ class RaceCar(Canvas):
         # 文字標示所在視窗# 顯示文字
         label = tk.Label(window1, text=self.name)
         label1 = tk.Label(window1, text="win")
+        
         label.pack()
         label1.pack()
 
@@ -162,6 +165,7 @@ for i in range(4):
     #cars[i].setcolor3(carcolor[random.randrange(10)])
     #cars[i].setcolor4(carcolor[random.randrange(10)])
     cars[i].pack()
+    
 
 
 addbutton()
