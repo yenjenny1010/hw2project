@@ -22,10 +22,10 @@ class RaceCar(Canvas):
         self.x = 10  # initial value
         self.y = 50  # initial value
         self.name = 1
-        self.color = "white"
-        self.color1 = "white"
-        self.color2 = "white"
-        self.color3 = "white"
+        self.color = "black"
+        self.color1 = "black"
+        self.color2 = "green"
+        self.color3 = "red"
         self.color4 = "white"
 
     def displayCar(self):
@@ -96,6 +96,7 @@ def run():
     while running:
         
         for car in cars:  # ？
+            car=cars[random.randrange(4)]
             if car.x < 670:
                 car.setcolor(carcolor[random.randrange(10)])
                 car.setcolor1(carcolor[random.randrange(10)])
@@ -103,18 +104,19 @@ def run():
                 car.setcolor3(carcolor[random.randrange(10)])
                 car.setcolor4(carcolor[random.randrange(10)])
                 car.displayCar()
-                speed = random.randrange(35)
+                speed = random.randrange(30)
                 car.x += speed
 
             else:
+                stopmusic()
                 car.displayCar()
                 car.win()
                 running = False
                 play2()
                 break
 
-            car.after(50)
-            car.update()  # Sleep for 100 milliseconds
+            car.after(50)# Sleep for 10 milliseconds
+            car.update()  
 def start():
     stopmusic()
     global running
@@ -140,27 +142,15 @@ def stop():
     global running
     running = False
 
-
-def keepgoing():
-    stopmusic()
-    play()
-    global running
-    if running ==True:
-        stopmusic()
-        play()
-    running = True
-    run()
-
-
 def addbutton():
     mybutton1 = tk.Button(window, text='Start', command=start)
     DoThing = tk.Button(window, text='RESTART', command=resetAll)
     mybutton2 = tk.Button(window, text='stop', command=stop)
-    mybutton3 = tk.Button(window, text='keep going', command=keepgoing)
+    
     mybutton1.pack(side=LEFT, padx=10, pady=10)
     DoThing.pack(side=LEFT, padx=10, pady=10)
     mybutton2.pack(side=LEFT, padx=10, pady=10)
-    mybutton3.pack(side=LEFT, padx=10, pady=10)
+    
 
 
 window = Tk()  # Create a window
@@ -180,9 +170,6 @@ for i in range(4):
     #cars[i].setcolor3(carcolor[random.randrange(10)])
     #cars[i].setcolor4(carcolor[random.randrange(10)])
     cars[i].pack()
-    
-
-
     
     
 addbutton()
