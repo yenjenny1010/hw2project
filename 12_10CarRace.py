@@ -96,7 +96,7 @@ def run():
     while running:
         
         for car in cars:  # ？
-            car=cars[random.randrange(4)]
+            #car=cars[random.randrange(4)]
             if car.x < 670:
                 car.setcolor(carcolor[random.randrange(10)])
                 car.setcolor1(carcolor[random.randrange(10)])
@@ -108,8 +108,11 @@ def run():
                 car.x += speed
 
             else:
+                
                 stopmusic()
                 car.displayCar()
+                
+                
                 car.win()
                 running = False
                 play2()
@@ -120,10 +123,14 @@ def run():
 def start():
     stopmusic()
     global running
-    running=True
+    if cars[0].x >= 670 or cars[1].x >= 670 or cars[2].x >= 670 or cars[3].x >= 670 :
+        running==False
+    else:
+
+        running=True
     
-    play()
-    run()
+        play()
+        run()
     
 
 def resetAll():
