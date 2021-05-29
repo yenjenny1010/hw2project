@@ -130,6 +130,8 @@ def stop():
 
 def keepgoing():
     global running
+    if running ==True:
+        stopmusic()
     running = True
     run()
 
@@ -147,19 +149,18 @@ window = Tk()  # Create a window
 window.title("Racing Cars")  # Set a title
 pygame.init()
 pygame.mixer.init()
-soundwav = pygame.mixer.Sound(
-    "C:/Users/user/OneDrive/桌面/1.mp3")  # filename.wav檔名
+soundwav = pygame.mixer.Sound("C:/Users/user/OneDrive/桌面/1.mp3")  # filename.wav檔名
 soundwav2 = pygame.mixer.Sound("C:/Users/user/OneDrive/桌面/2.mp3")
 
 
 for i in range(4):
     cars.append(RaceCar(window, width=width, height=height))
     cars[i].setname(name[i])
-    cars[i].setcolor(carcolor[random.randrange(10)])
-    cars[i].setcolor1(carcolor[random.randrange(10)])
-    cars[i].setcolor2(carcolor[random.randrange(10)])
-    cars[i].setcolor3(carcolor[random.randrange(10)])
-    cars[i].setcolor4(carcolor[random.randrange(10)])
+    #cars[i].setcolor(carcolor[random.randrange(10)])
+    #cars[i].setcolor1(carcolor[random.randrange(10)])
+    #cars[i].setcolor2(carcolor[random.randrange(10)])
+    #cars[i].setcolor3(carcolor[random.randrange(10)])
+    #cars[i].setcolor4(carcolor[random.randrange(10)])
     cars[i].pack()
 
 

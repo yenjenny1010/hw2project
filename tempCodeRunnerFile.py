@@ -1,2 +1,2 @@
-def stopmusic():
-    soundwav.stop()
+ def setcolor(self, color):
+        self.color = color
