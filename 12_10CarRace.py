@@ -5,8 +5,6 @@ import pygame
 name = ["1", "2", "3", "4"]
 carcolor = ["#FF0000", "#003153", "#FF4D00", "#FFA500", "#7f00FF",
             "#FFD700", "#FFFF00", "#CCFF00", "#CCCCFF", "#FF00FF", "#007FFF","#0000FF","#7FFFD4","#E0FFFF","#F0F8FF","#30D5C8"]
-runwaycolor = ['floral white', 'old lace',
-               "lemon chiffon", 'antique white', 'peach puff']
 running = False
 width = 800
 height = 60
@@ -149,8 +147,8 @@ def stop():
 
 
 def addbutton():
-    mybutton1 = tk.Button(window, text='Start', command=start)
-    DoThing = tk.Button(window, text='RESTART', command=resetAll)
+    mybutton1 = tk.Button(window, text='start', command=start)
+    DoThing = tk.Button(window, text='restart', command=resetAll)
     mybutton2 = tk.Button(window, text='stop', command=stop)
     mybutton1.pack(side=LEFT, padx=10, pady=10)
     DoThing.pack(side=LEFT, padx=10, pady=10)
