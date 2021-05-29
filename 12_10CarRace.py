@@ -3,7 +3,7 @@ import tkinter as tk
 import random
 import pygame
 name = ["1", "2", "3", "4"]
-carcolor = ["#FF0000", "#003153", "#FF4D00", "#FFA500", "#7f00FF",
+color = ["#FF0000", "#003153", "#FF4D00", "#FFA500", "#7f00FF",
             "#FFD700", "#FFFF00", "#CCFF00", "#CCCCFF", "#FF00FF", "#007FFF","#0000FF","#7FFFD4","#E0FFFF","#F0F8FF","#30D5C8"]
 running = False
 width = 800
@@ -95,11 +95,11 @@ def run():
         for car in cars:  
             # car=cars[random.randrange(4)]
             if car.x < 670:
-                car.setcolor(carcolor[random.randrange(16)])
-                car.setcolor1(carcolor[random.randrange(16)])
-                car.setcolor2(carcolor[random.randrange(16)])
-                car.setcolor3(carcolor[random.randrange(16)])
-                car.setcolor4(carcolor[random.randrange(16)])
+                car.setcolor(color[random.randrange(16)])
+                car.setcolor1(color[random.randrange(16)])
+                car.setcolor2(color[random.randrange(16)])
+                car.setcolor3(color[random.randrange(16)])
+                car.setcolor4(color[random.randrange(16)])
                 car.displayCar()
                 speed = random.randrange(30)
                 car.x +=speed
@@ -168,11 +168,11 @@ soundwav2 = pygame.mixer.Sound(
 for i in range(4):
     cars.append(RaceCar(window, width=width, height=height))
     cars[i].setname(name[i])
-    # cars[i].setcolor(carcolor[random.randrange(10)])
-    # cars[i].setcolor1(carcolor[random.randrange(10)])
-    # cars[i].setcolor2(carcolor[random.randrange(10)])
-    # cars[i].setcolor3(carcolor[random.randrange(10)])
-    # cars[i].setcolor4(carcolor[random.randrange(10)])
+    # cars[i].setcolor(color[random.randrange(10)])
+    # cars[i].setcolor1(color[random.randrange(10)])
+    # cars[i].setcolor2(color[random.randrange(10)])
+    # cars[i].setcolor3(color[random.randrange(10)])
+    # cars[i].setcolor4(color[random.randrange(10)])
     cars[i].pack()
 
 
