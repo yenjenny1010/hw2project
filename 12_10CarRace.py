@@ -3,8 +3,8 @@ import tkinter as tk
 import random
 import pygame
 name = ["1", "2", "3", "4"]
-carcolor = ["#FFC0CB", "#800080", "#0000FF", "#008000", "#F5F5DC",
-            "#FFFF00", "#FFD700", "#FFA500", "#FF0000", "#808080", "#000000"]
+carcolor = ["#FF0000", "#003153", "#FF4D00", "#FFA500", "#7f00FF",
+            "#FFD700", "#FFFF00", "#CCFF00", "#CCCCFF", "#FF00FF", "#007FFF","#0000FF","#7FFFD4","#E0FFFF","#F0F8FF","#30D5C8"]
 runwaycolor = ['floral white', 'old lace',
                "lemon chiffon", 'antique white', 'peach puff']
 running = False
@@ -40,7 +40,7 @@ class RaceCar(Canvas):
                               self.y - 10, fill=self.color2, tags="car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30,
                             self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill=self.color3, tags="car",outline="black")
-        self.create_text((self.x-10, self.y), text=self.name)
+        self.create_text((self.x, self.y), text=self.name)
 
     def win(self):
         window1 = tk.Tk()
@@ -97,20 +97,16 @@ def run():
         for car in cars:  
             # car=cars[random.randrange(4)]
             if car.x < 670:
-                car.setcolor(carcolor[random.randrange(10)])
-                car.setcolor1(carcolor[random.randrange(10)])
-                car.setcolor2(carcolor[random.randrange(10)])
-                car.setcolor3(carcolor[random.randrange(10)])
-                car.setcolor4(carcolor[random.randrange(10)])
+                car.setcolor(carcolor[random.randrange(16)])
+                car.setcolor1(carcolor[random.randrange(16)])
+                car.setcolor2(carcolor[random.randrange(16)])
+                car.setcolor3(carcolor[random.randrange(16)])
+                car.setcolor4(carcolor[random.randrange(16)])
                 car.displayCar()
                 speed = random.randrange(30)
-                car.x += speed
+                car.x +=speed
 
             else:
-                cars[0].color=carcolor[0]
-                cars[9].color=carcolor[1]
-                cars[4].color=carcolor[2]
-                cars[5].color=carcolor[3]
                 stopmusic()
                 car.displayCar()
                 car.win()
