@@ -7,7 +7,7 @@ carcolor = ["#FFC0CB", "#800080", "#0000FF", "#008000", "#F5F5DC",
             "#FFFF00", "#FFD700", "#FFA500", "#FF0000", "#808080", "#000000"]
 runwaycolor = ['floral white', 'old lace',
                "lemon chiffon", 'antique white', 'peach puff']
-running = True
+running = False
 width = 800
 height = 60
 cars = []
@@ -90,9 +90,11 @@ def keepplaymusic():
 
 
 def run():
-    play()
+    for car in cars:  # ？
+        car.displayCar()
     global running
     while running:
+        
         for car in cars:  # ？
             if car.x < 670:
                 car.setcolor(carcolor[random.randrange(10)])
@@ -113,12 +115,20 @@ def run():
 
             car.after(50)
             car.update()  # Sleep for 100 milliseconds
-
+def start():
+    stopmusic()
+    global running
+    running=True
+    
+    play()
+    run()
+    
 
 def resetAll():
     stopmusic()
+    
     global running
-    running = True
+    running=False
     for car in cars:
         car.x = 10  # initial value
         car.y = 50
@@ -132,17 +142,22 @@ def stop():
 
 
 def keepgoing():
+    stopmusic()
+    play()
     global running
     if running ==True:
         stopmusic()
+        play()
     running = True
     run()
 
 
 def addbutton():
+    mybutton1 = tk.Button(window, text='Start', command=start)
     DoThing = tk.Button(window, text='RESTART', command=resetAll)
     mybutton2 = tk.Button(window, text='stop', command=stop)
     mybutton3 = tk.Button(window, text='keep going', command=keepgoing)
+    mybutton1.pack(side=LEFT, padx=10, pady=10)
     DoThing.pack(side=LEFT, padx=10, pady=10)
     mybutton2.pack(side=LEFT, padx=10, pady=10)
     mybutton3.pack(side=LEFT, padx=10, pady=10)
@@ -152,8 +167,8 @@ window = Tk()  # Create a window
 window.title("Racing Cars")  # Set a title
 pygame.init()
 pygame.mixer.init()
-soundwav = pygame.mixer.Sound("C:/Users/user/OneDrive/桌面/1.mp3")  # filename.wav檔名
-soundwav2 = pygame.mixer.Sound("C:/Users/user/OneDrive/桌面/2.mp3")
+soundwav = pygame.mixer.Sound("D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/1.mp3")  # filename.wav檔名
+soundwav2 = pygame.mixer.Sound("D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/2.mp3")
 
 
 for i in range(4):
@@ -168,6 +183,8 @@ for i in range(4):
     
 
 
+    
+    
 addbutton()
 run()
 
