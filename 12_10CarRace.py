@@ -12,6 +12,7 @@ cars = []
 runways = []
 
 
+
 class RaceCar(Canvas):
     def __init__(self, master, width, height):
         Canvas.__init__(self, master, width=width, height=height)
@@ -91,7 +92,7 @@ def run():
         car.displayCar()
     global running
     while running:
-
+        random.shuffle(cars)
         for car in cars:  
             # car=cars[random.randrange(4)]
             if car.x < 670:
