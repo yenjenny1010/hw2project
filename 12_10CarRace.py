@@ -26,7 +26,7 @@ class RaceCar(Canvas):
         self.color2 = "green"
         self.color3 = "red"
         self.color4 = "white"
-
+    
     def displayCar(self):
         self.delete("car")
         self.create_rectangle(0, 0, 800,  60, fill=self.color4)
@@ -39,7 +39,7 @@ class RaceCar(Canvas):
                               self.y - 10, fill=self.color2, tags="car")
         self.create_polygon(self.x + 10, self.y - 20, self.x + 20,  self.y - 30,
                             self.x + 30, self.y - 30, self.x + 40, self.y - 20, fill=self.color3, tags="car",outline="black")
-        self.create_text((self.x, self.y), text=self.name)
+        self.create_text((self.x, self.y), text=self.name, tags="car")
 
     def win(self):
         window1 = tk.Tk()
@@ -48,9 +48,9 @@ class RaceCar(Canvas):
         # 文字標示所在視窗# 顯示文字
         label = tk.Label(window1, text=self.name)
         label1 = tk.Label(window1, text="win")
-
         label.pack()
         label1.pack()
+        print(self.name,"win the game")
 
     def setname(self, name):
         self.name = name
@@ -94,7 +94,6 @@ def run():
     while running:
         random.shuffle(cars)
         for car in cars:  
-            # car=cars[random.randrange(4)]
             if car.x < 670:
                 car.setcolor(color[random.randrange(16)])
                 car.setcolor1(color[random.randrange(16)])
@@ -102,7 +101,8 @@ def run():
                 car.setcolor3(color[random.randrange(16)])
                 car.setcolor4(color[random.randrange(16)])
                 car.displayCar()
-                speed = random.randrange(30)
+                speed = random.randrange(60)
+                speed/=2
                 car.x +=speed
 
             else:
@@ -113,7 +113,7 @@ def run():
                 play2()
                 break
 
-            car.after(50)  # Sleep for 10 milliseconds
+            car.after(30)  # Sleep for 10 milliseconds
             car.update()
 
 
@@ -132,7 +132,6 @@ def start():
 
 def resetAll():
     stopmusic()
-
     global running
     running = False
     for car in cars:

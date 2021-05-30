@@ -1,4 +1,6 @@
 import tkinter as tk
+from tkinter import *
+"""
 counter = 0
  #先設定一個變數，讓它可以根據按鈕改變數值
 def plus():
@@ -30,4 +32,13 @@ btn.pack(anchor=tk.S,side=tk.RIGHT,padx=10,pady=10)
 btn1.pack(anchor=tk.S,side=tk.RIGHT,padx=10,pady=10)
 btn2.pack(anchor=tk.S,side=tk.RIGHT,padx=10,pady=10)
 
-tk.mainloop()
+tk.mainloop()"""
+def win():
+        window1 = Tk()
+        window1.title('racecar')
+        window1.geometry("300x100+250+150")
+        # 文字標示所在視窗# 顯示文字
+        img_gif = PhotoImage(file = "D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/3.gif")
+        label_img = Label(window1, image = img_gif)
+        label_img.pack()
+win()
