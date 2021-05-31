@@ -12,7 +12,6 @@ cars = []
 runways = []
 
 
-
 class RaceCar(Canvas):
     def __init__(self, master, width, height):
         Canvas.__init__(self, master, width=width, height=height)
@@ -104,15 +103,22 @@ def run():
                 speed = random.randrange(60)
                 speed/=2
                 car.x +=speed
-
             else:
                 stopmusic()
-                car.displayCar()
+                play2()
                 car.win()
                 running = False
-                play2()
+                for i in range(200):
+                    car.displayCar()
+                    car.setcolor(color[random.randrange(16)])
+                    car.setcolor1(color[random.randrange(16)])
+                    car.setcolor2(color[random.randrange(16)])
+                    car.setcolor3(color[random.randrange(16)])
+                    car.setcolor4(color[random.randrange(16)])
+                    car.create_text((100, 30), text="WIN", tags="car",font=('Courier',40))
+                    car.update()
+                    car.after(1)
                 break
-
             car.after(30)  # Sleep for 10 milliseconds
             car.update()
 
@@ -123,9 +129,7 @@ def start():
     if cars[0].x >= 670 or cars[1].x >= 670 or cars[2].x >= 670 or cars[3].x >= 670:
         running == False
     else:
-
         running = True
-
         play()
         run()
 
@@ -148,10 +152,10 @@ def stop():
 
 def addbutton():
     mybutton1 = tk.Button(window, text='start', command=start)
-    DoThing = tk.Button(window, text='restart', command=resetAll)
+    mybutton3 = tk.Button(window, text='restart', command=resetAll)
     mybutton2 = tk.Button(window, text='stop', command=stop)
     mybutton1.pack(side=LEFT, padx=10, pady=10)
-    DoThing.pack(side=LEFT, padx=10, pady=10)
+    mybutton3.pack(side=LEFT, padx=10, pady=10)
     mybutton2.pack(side=LEFT, padx=10, pady=10)
 
 
@@ -160,7 +164,7 @@ window.title("Racing Cars")  # Set a title
 pygame.init()
 pygame.mixer.init()
 soundwav = pygame.mixer.Sound(
-    "D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/1.mp3")  # filename.wav檔名
+    "D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/1.mp3")  
 soundwav2 = pygame.mixer.Sound(
     "D:/大學/彰師大一下/程式設計/作業2/jenny's project/hw2project/2.mp3")
 
