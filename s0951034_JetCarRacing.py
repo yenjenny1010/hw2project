@@ -135,6 +135,10 @@ def start():
 
 
 def resetAll():
+    cars[0].displayCar()
+    cars[1].displayCar()
+    cars[2].displayCar()
+    cars[3].displayCar()
     stopmusic()
     global running
     running = False
